@@ -30,3 +30,39 @@ ip dhcp excluded-address 192.168.10.1
 ip dhcp excluded-address 192.168.20.1
 ip dhcp excluded-address 192.168.30.1
 ip dhcp excluded-address 192.168.40.1
+
+## configure the HR DHCP Pool
+
+ip dhcp pool HR
+network 192.168.10.0 255.255.255.0
+default-router 192.168.10.1
+exit
+
+## configure the FINANCE DHCP Pool
+
+ip dhcp pool FINANCE
+network 192.168.20.0 255.255.255.0
+default-router 192.168.20.0
+exit
+
+## configure the IT DHCP Pool
+
+ip dhcp pool IT
+network 192.168.30.0 255.255.255.0
+default-router 192.168.30.0
+exit
+
+## configure the SERVERS DHCP Pool
+
+ip dhcp pool SERVERS
+network 192.168.40.0 255.255.255.0
+default-router 192.168.40.1
+exit
+
+## Verification
+
+show ip dhcp pool
+
+## DHCP address assignments were verified using
+
+show ip dhcp binding
