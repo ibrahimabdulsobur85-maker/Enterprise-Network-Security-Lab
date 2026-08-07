@@ -80,3 +80,6 @@ int range f0/5-7
 switchport mode access
 switchport access vlan 40
 exit
+
+## Verification
+show vlan brief
