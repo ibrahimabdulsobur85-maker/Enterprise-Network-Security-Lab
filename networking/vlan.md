@@ -72,10 +72,11 @@ exit
 int range f0/2-4
 switchport mode access
 switchport access vlan 30
+exit
 
 ## Assign Server ports
 
 int range f0/5-7
 switchport mode access
 switchport access vlan 40
-
+exit
