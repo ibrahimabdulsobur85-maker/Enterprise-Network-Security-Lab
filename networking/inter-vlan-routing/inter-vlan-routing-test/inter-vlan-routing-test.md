@@ -25,4 +25,4 @@ confirming that Inter-VLAN Routing is functioning correctly.
 
 ## Test Evidence
 
-![Inter-VLAN Routing Test](inter-vlan-routing-test.png)
+![Inter-VLAN Routing Test](HR_PC1 to IT_PC1.png)
