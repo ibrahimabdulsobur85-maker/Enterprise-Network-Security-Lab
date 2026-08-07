@@ -1,5 +1,3 @@
-# Enterprise-Network-Security-Lab
-A practical enterprise network security lab built with Cisco Packet Tracer
 # Enterprise Network Security Lab
 
 ## Project Overview
@@ -7,43 +5,100 @@ A practical enterprise network security lab built with Cisco Packet Tracer
 This project demonstrates the design, configuration, and
 security of a small enterprise network using Cisco Packet Tracer.
 
-The network is designed to simulate a real-world organization
-with multiple departments, Internet connectivity, network
-segmentation, routing, DHCP, NAT, and security controls.
+The network simulates an organization with multiple departments,
+an internal server network, Internet connectivity, network
+segmentation, routing, DHCP, NAT/PAT, and security controls.
 
-## Objectives
+## Network Objectives
 
 - Design an enterprise network topology
-- Implement VLAN segmentation
+- Segment departments using VLANs
 - Configure inter-VLAN routing
-- Configure DHCP
-- Configure Internet connectivity
+- Configure DHCP on the company router
+- Configure an internal server network
+- Configure Internet connectivity through an ISP router
 - Configure NAT/PAT
 - Implement ACLs
 - Implement switch security
 - Configure secure device management
-- Test and troubleshoot the network
+- Test and troubleshoot network connectivity
 
-## Network Departments
+## Network Architecture
 
-| VLAN | Department |
-|------|------------|
-| 10 | HR |
-| 20 | Finance |
-| 30 | IT |
+The network consists of:
+
+- ISP Router
+- Company Router
+- Core Switch
+- HR Department
+- Finance Department
+- IT Department
+- Internal Server
+
+## VLAN Structure
+
+| VLAN | Purpose | Network |
+|------|---------|---------|
+| 10 | HR | 192.168.10.0/24 |
+| 20 | Finance | 192.168.20.0/24 |
+| 30 | IT | 192.168.30.0/24 |
+| 40 | Servers | 192.168.40.0/24 |
+
+## IP Addressing
+
+| Network | Default Gateway |
+|---------|-----------------|
+| 192.168.10.0/24 | 192.168.10.1 |
+| 192.168.20.0/24 | 192.168.20.1 |
+| 192.168.30.0/24 | 192.168.30.1 |
+| 192.168.40.0/24 | 192.168.40.1 |
+
+The Company Router will provide DHCP services for the
+department VLANs.
+
+The internal server will use a static IP address.
 
 ## Technologies
 
 - Cisco Packet Tracer
-- VLAN
+- VLANs
 - 802.1Q Trunking
 - Inter-VLAN Routing
 - DHCP
 - NAT/PAT
-- ACL
+- ACLs
 - Port Security
 - DHCP Snooping
 - SSH
+
+## Security Design
+
+The network uses VLAN segmentation to separate departments
+and the internal server network.
+
+Access Control Lists (ACLs) will be used to control
+communication between VLANs.
+
+Additional switch security mechanisms will be implemented
+to protect the network from unauthorized devices and
+common Layer 2 attacks.
+
+## Testing
+
+The network will be tested for:
+
+- VLAN connectivity
+- Inter-VLAN routing
+- DHCP address assignment
+- Server connectivity
+- Internet connectivity
+- NAT/PAT functionality
+- ACL enforcement
+- Switch security
+
+## Topology
+
+The final network topology will be documented here.
 
 ## Author
 
