@@ -11,18 +11,56 @@ to the company's network through unused or unauthorized access ports.
 
 ## Configuration
 
-### 1. Configure the Access Ports
-
 On Switch0:
 
 ```cisco
+
+## VLAN 10 - HR Department
+
 enable
 configure terminal
 
-interface range fa0/2-13
+## VLAN 10 - HR Department
+
+interface range fa0/11-13
 switchport mode access
 switchport port-security
 switchport port-security maximum 1
 switchport port-security mac-address sticky
 switchport port-security violation restrict
 exit
+
+## VLAN 20 - FINANCE Department
+
+interface range fa0/8-10
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address sticky
+switchport port-security violation restrict
+exit
+
+## VLAN 30 - IT Department
+
+interface range fa0/2-4
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address sticky
+switchport port-security violation restrict
+exit
+
+## VLAN 40 - SERVERS
+
+interface range fa0/5-7
+switchport mode access
+switchport port-security
+switchport port-security maximum 1
+switchport port-security mac-address sticky
+switchport port-security violation shutdown
+exit
+
+## Verification
+
+show port-security
+show port-security address
