@@ -1,105 +1,161 @@
-# Enterprise Network Security Lab
+# Secure Small Office Network
 
 ## Project Overview
 
-This project demonstrates the design, configuration, and
-security of a small enterprise network using Cisco Packet Tracer.
+This project demonstrates the design, configuration, and security
+of a small office network using Cisco networking technologies.
 
-The network simulates an organization with multiple departments,
-an internal server network, Internet connectivity, network
-segmentation, routing, DHCP, NAT/PAT, and security controls.
-
-## Network Objectives
-
-- Design an enterprise network topology
-- Segment departments using VLANs
-- Configure inter-VLAN routing
-- Configure DHCP on the company router
-- Configure an internal server network
-- Configure Internet connectivity through an ISP router
-- Configure NAT/PAT
-- Implement ACLs
-- Implement switch security
-- Configure secure device management
-- Test and troubleshoot network connectivity
+The network was designed with VLAN segmentation, inter-VLAN routing,
+centralized DHCP, Layer 2 security controls, secure remote management,
+NAT, ACLs, and WAN connectivity.
 
 ## Network Architecture
 
 The network consists of:
 
-- ISP Router
-- Company Router
-- Core Switch
-- HR Department
-- Finance Department
-- IT Department
-- Internal Server
+- 1 Company Router
+- 2 Switches
+- Multiple PCs
+- 1 Server
+- 1 ISP Router
+
+The network is divided into four departments using VLANs.
 
 ## VLAN Structure
 
-| VLAN | Purpose | Network |
-|------|---------|---------|
+| VLAN | Department | Network |
+|------|------------|---------|
 | 10 | HR | 192.168.10.0/24 |
 | 20 | Finance | 192.168.20.0/24 |
 | 30 | IT | 192.168.30.0/24 |
-| 40 | Servers | 192.168.40.0/24 |
+| 40 | Server | 192.168.40.0/24 |
 
-## IP Addressing
+VLAN segmentation separates the departments into different
+broadcast domains and improves network organization and security.
 
-| Network | Default Gateway |
-|---------|-----------------|
-| 192.168.10.0/24 | 192.168.10.1 |
-| 192.168.20.0/24 | 192.168.20.1 |
-| 192.168.30.0/24 | 192.168.30.1 |
-| 192.168.40.0/24 | 192.168.40.1 |
+## Technologies Implemented
 
-The Company Router will provide DHCP services for the
-department VLANs.
+### VLANs
 
-The internal server will use a static IP address.
+Four VLANs were created to logically separate the departments
+and server network.
 
-## Technologies
+### Inter-VLAN Routing
 
-- Cisco Packet Tracer
-- VLANs
-- 802.1Q Trunking
-- Inter-VLAN Routing
-- DHCP
-- NAT/PAT
-- ACLs
-- Port Security
-- DHCP Snooping
-- SSH
+Router-on-a-Stick was configured to allow communication between
+the VLANs where permitted.
 
-## Security Design
+### DHCP
 
-The network uses VLAN segmentation to separate departments
-and the internal server network.
+The Company Router provides dynamic IP addressing to the internal
+VLANs.
 
-Access Control Lists (ACLs) will be used to control
-communication between VLANs.
+### DHCP Snooping
 
-Additional switch security mechanisms will be implemented
-to protect the network from unauthorized devices and
-common Layer 2 attacks.
+DHCP Snooping was implemented on the switches to help prevent
+rogue DHCP servers from providing unauthorized network
+configuration.
+
+### Port Security
+
+Port Security was configured on access ports with a maximum of
+one secure MAC address.
+
+Violation modes were configured according to the network design:
+
+- VLAN 10 — Restrict
+- VLAN 20 — Restrict
+- VLAN 30 — Restrict
+- VLAN 40 — Shutdown
+
+Sticky MAC learning was used on the access ports.
+
+### STP Security
+
+PortFast was enabled on end-device access ports.
+
+BPDU Guard was also configured to protect access ports from
+unexpected BPDU frames.
+
+### SSH
+
+SSH was configured for secure remote management of the
+Company Router.
+
+SSH connectivity was successfully tested from a network PC.
+
+### NAT
+
+Network Address Translation was configured so that internal
+private addresses can communicate through the Company's WAN
+interface.
+
+NAT overload allows multiple internal devices to share the
+outside interface address.
+
+### ACL
+
+An extended ACL was configured to protect the Server VLAN.
+
+Traffic from VLANs 10, 20, and 30 toward VLAN 40 was blocked,
+while other traffic was permitted.
+
+### WAN Connectivity
+
+The Company Router was connected to an ISP Router to provide
+external network connectivity.
+
+## Security Controls
+
+The project implements multiple layers of network security:
+
+1. VLAN segmentation
+2. DHCP Snooping
+3. Port Security
+4. PortFast
+5. BPDU Guard
+6. SSH management
+7. ACL-based traffic filtering
+8. NAT
+
+These controls demonstrate a layered approach to securing a
+small office network.
 
 ## Testing
 
-The network will be tested for:
+The completed network was tested for:
 
-- VLAN connectivity
-- Inter-VLAN routing
-- DHCP address assignment
-- Server connectivity
-- Internet connectivity
-- NAT/PAT functionality
+- Inter-VLAN connectivity
+- DHCP operation
+- DHCP Snooping bindings
+- Port Security
+- STP security
+- SSH connectivity
+- NAT translations
 - ACL enforcement
-- Switch security
+- WAN connectivity
 
-## Topology
+The network successfully passed the final connectivity and
+security tests.
 
-The final network topology will be documented here.
+Detailed evidence and configuration documentation can be found
+in the individual project folders.
 
-## Author
+## Project Documentation
 
-Ibrahim Abdulsobur
+```text
+project/
+├── vlan/
+├── inter-vlan/
+├── dhcp/
+├── wan/
+├── default-route/
+├── dhcp-snooping/
+├── port-security/
+├── portfast/
+├── bpduguard/
+├── ssh/
+├── nat/
+├── acl/
+├── final-testing/
+└── README.md
